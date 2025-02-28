@@ -8,11 +8,13 @@ function Chat() {
   const handleSend = async () => {
     if (!input.trim()) return;
     // 添加用户消息到消息列表
+    // Add user message to the message list
     const userMessage = { sender: 'user', text: input };
     setMessages(prev => [...prev, userMessage]);
 
     try {
       // 调用后端 API
+      // Call the backend API
       const response = await axios.post('http://localhost:5000/api/chat', { message: input });
       const reply = response.data.reply;
       const assistantMessage = { sender: 'assistant', text: reply };
